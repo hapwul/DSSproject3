@@ -22,32 +22,37 @@ public class WeaknessScore {
         
     }
     
-    public String sort(String[] department){
+    public String sort(int[] department){
         department = dsshome.holland.departmentFiltered;
         
         int[] score = new int [department.length];
         
+        for(int i = 0; i < 5; i++){
+            System.out.println(subjectWeak[i]);
+        }
+        
         for(int i = 0; i < score.length; i++){
             
-            score[i] = 1;
+            score[i] = 0;
             
-            if(subjectWeak[0] == 1) score[i] *= dsshome.data.math[i];
-            if(subjectWeak[1] == 1) score[i] *= dsshome.data.english[i];
-            if(subjectWeak[2] == 1) score[i] *= dsshome.data.physics[i];
-            if(subjectWeak[3] == 1) score[i] *= dsshome.data.chemistry[i];
-            if(subjectWeak[4] == 1) score[i] *= dsshome.data.biology[i];
+            if(subjectWeak[0] == 1) score[i] += dsshome.data.math[department[i]];
+            if(subjectWeak[1] == 1) score[i] += dsshome.data.english[department[i]];
+            if(subjectWeak[2] == 1) score[i] += dsshome.data.physics[department[i]];
+            if(subjectWeak[3] == 1) score[i] += dsshome.data.chemistry[department[i]];
+            if(subjectWeak[4] == 1) score[i] += dsshome.data.biology[department[i]];
             
-            System.out.println(department[i] + " " + score[i]);
+            System.out.println(dsshome.data.department[department[i]] + " " + score[i]);
         }
         
         int min = score[0];
-        String minDep = dsshome.data.department[0];
-        for(int i = 2; i < score.length; i++){
+        String minDep = dsshome.data.department[department[0]];
+        for(int i = 1; i < score.length; i++){
            if(score[i] < min){
                min = score[i];
-               minDep = department[i];
+               minDep = dsshome.data.department[department[i]];
            }
-        }   
+        }
+        
         return minDep;
     }
     
