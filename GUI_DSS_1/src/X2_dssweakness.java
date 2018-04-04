@@ -247,8 +247,13 @@ public class X2_dssweakness extends javax.swing.JFrame {
         dispose();
         X3_dssgrade x = new X3_dssgrade();
         x.setVisible(true);        // TODO add your handling code here:
-        String departmentMin = dsshome.score.sort(dsshome.holland.departmentFiltered);
-        JOptionPane.showMessageDialog ( null, departmentMin);
+        int[] departmentSorted = dsshome.score.sort(dsshome.holland.departmentFiltered);
+        System.out.println("Sorting...");
+        for(int i = 0; i < departmentSorted.length; i++){
+            System.out.println(dsshome.data.department[departmentSorted[i]] + " " + dsshome.score.scoreWeak[i]);
+        }
+        JOptionPane.showMessageDialog ( null, dsshome.data.department[departmentSorted[0]] + "\n" +
+                dsshome.data.department[departmentSorted[1]] + "\n" + dsshome.data.department[departmentSorted[2]]);
     }//GEN-LAST:event_jNext_X2ActionPerformed
 
     private void jHome_X1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHome_X1ActionPerformed
